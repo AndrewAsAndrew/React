@@ -15,7 +15,6 @@ const Counter = () => {
             <h1>{count}</h1>
             <button onClick={increment}>Лайк)</button>
             <button onClick={decrement}>Дизлайк(</button>
-
         </div>
     )
 }
