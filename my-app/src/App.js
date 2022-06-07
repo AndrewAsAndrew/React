@@ -14,42 +14,37 @@ function App() {
     {id: 3, title: 'React 3', body: 'Description'},
   ])
 
-  const [posts2, setPosts2] = useState([
-    {id: 4, title: 'React 4', body: 'Description'},
-    {id: 5, title: 'React 5', body: 'Description'},
-    {id: 6, title: 'React 6', body: 'Description'},
-  ])
+  const [post, setPost] = useState({title: '', body: ''})
 
-  const [title, setTitle] = useState('')
-
-  const bodyInputRef = useRef()
 
   const addNewPost = (e) => {
     e.preventDefault()
-    console.log(title)
-    console.log(bodyInputRef.current.value)
+    setPosts([...posts, {...post, id: Date.now()}])
+    setPost({title: '', body: ''})
   }
 
   return (
     <div className="App">
 
       <form>
+        {/* Управляемый компонент */}
         <MyInput 
-          value={title}
-          onChange={e => setTitle(e.target.value)}
+          value={post.title}
+          onChange={e => setPost({...post, title: e.target.value})}
           type="text" 
           placeholder='Название поста' 
         />
+        {/* Неуправляемый/Неконтролируемый компонент */}
         <MyInput 
-          ref={bodyInputRef}
+          value={post.body}
+          onChange={e => setPost({...post, body: e.target.value})}
           type="text" 
           placeholder='Описание поста' 
         />
         <MyButton onClick={addNewPost}>Создать пост</MyButton>
       </form>
 
-      <PostList posts={posts} title='Список постов 1'/>
-      <PostList posts={posts2} title='Список постов 2'/>
+      <PostList posts={posts} title='Список постов'/>
       
     </div>
   );
