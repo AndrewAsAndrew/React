@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import ClassCounter from './components/ClassCounter';
 import Counter from "./components/Counter";
 import PostItem from './components/PostItem';
@@ -20,11 +20,14 @@ function App() {
     {id: 6, title: 'React 6', body: 'Description'},
   ])
 
-  const [title, setTitle] = useState('Название поста')
+  const [title, setTitle] = useState('')
+
+  const bodyInputRef = useRef()
 
   const addNewPost = (e) => {
     e.preventDefault()
     console.log(title)
+    console.log(bodyInputRef.current.value)
   }
 
   return (
@@ -37,7 +40,11 @@ function App() {
           type="text" 
           placeholder='Название поста' 
         />
-        <MyInput type="text" placeholder='Описание поста' />
+        <MyInput 
+          ref={bodyInputRef}
+          type="text" 
+          placeholder='Описание поста' 
+        />
         <MyButton onClick={addNewPost}>Создать пост</MyButton>
       </form>
 
