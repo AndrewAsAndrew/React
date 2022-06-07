@@ -15,18 +15,30 @@ function App() {
   ])
 
   const [posts2, setPosts2] = useState([
-    {id: 1, title: 'React 4', body: 'Description'},
-    {id: 2, title: 'React 5', body: 'Description'},
-    {id: 3, title: 'React 6', body: 'Description'},
+    {id: 4, title: 'React 4', body: 'Description'},
+    {id: 5, title: 'React 5', body: 'Description'},
+    {id: 6, title: 'React 6', body: 'Description'},
   ])
+
+  const [title, setTitle] = useState('Название поста')
+
+  const addNewPost = (e) => {
+    e.preventDefault()
+    console.log(title)
+  }
 
   return (
     <div className="App">
 
       <form>
-        <MyInput type="text" placeholder='Название поста' />
+        <MyInput 
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          type="text" 
+          placeholder='Название поста' 
+        />
         <MyInput type="text" placeholder='Описание поста' />
-        <MyButton disabled>Создать пост</MyButton>
+        <MyButton onClick={addNewPost}>Создать пост</MyButton>
       </form>
 
       <PostList posts={posts} title='Список постов 1'/>
